@@ -25,12 +25,14 @@
 export default {
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          content: "test",
-        },
-      ],
+      posts: [],
+    };
+  },
+  async asyncData({ $axios }) {
+    const url = "https://echo-test-ya.herokuapp.com/posts";
+    const response = await $axios.$get(url);
+    return {
+      posts: response,
     };
   },
 };
